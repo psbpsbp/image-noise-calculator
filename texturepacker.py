@@ -28,7 +28,7 @@ wrap_x,wrap_y=True,True
 adaptative=True
 
 
-#the name of the gradient the final image will be output with
+#the name of the gradient the final image will be output with (possible gradients: https://matplotlib.org/stable/users/explain/colors/colormaps.html)
 gradient="viridis"
 
 #overwite files if they already exist, change to false if you have already ran it once and just have added some new textures (boolean)
@@ -76,8 +76,8 @@ def noisemap(texture: Image, pls: list[list[int]]):
 
   for i in range(256):
 
-    if extremes[0] <= i <= extremes[1]:
-      g = fgradient((i - extremes[0]) / (ext if ext != 0 else 1))
+    if extremes[0] <= i <= extremes[1] and ext!=0:
+      g = fgradient((i - extremes[0]) / ext)
       palette.extend([int(g[0] * 255), int(g[1] * 255), int(g[2] * 255)])
 
     else:
